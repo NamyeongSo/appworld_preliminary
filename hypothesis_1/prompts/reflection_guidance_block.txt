@@ -1,0 +1,6 @@
+Task-specific guidance from prior counterfactual reflection:
+<guidance>
+{{ guidance_text }}
+</guidance>
+
+Use this guidance as strategy advice. Still inspect the current API docs and app state before acting.

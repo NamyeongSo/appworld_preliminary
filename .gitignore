@@ -129,7 +129,7 @@ generate/tasks/task_generators/
 tests/package/apps
 tests/generation
 # !generate/data
-hypothesis_1/
+# hypothesis_1/
 hypothesis_2/
 
 .tmp/
@@ -137,3 +137,9 @@ src/appworld/.source/*.bundle
 generate/.source/*.bundle
 src/appworld/.source/*.bundle
 generate/.source/*.bundle
+
+# Hypothesis 1 generated runtime artifacts; keep source code, manifests, prompts, tests, and reports tracked.
+hypothesis_1/appworld_root/
+hypothesis_1/outputs/
+!hypothesis_1/data/
+!hypothesis_1/data/**
