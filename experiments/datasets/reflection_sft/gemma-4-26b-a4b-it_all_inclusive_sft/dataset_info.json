@@ -1,0 +1,77 @@
+{
+  "citation": "",
+  "description": "",
+  "features": {
+    "sample_id": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "task_id": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "case": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "source_type": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "task_query": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "source_path": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "manifest_path": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "outcome_label_a": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "outcome_label_b": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "system_prompt": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "user_prompt": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "assistant_label": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "assistant_reasoning": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "reflection_text": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "messages": {
+      "feature": {
+        "content": {
+          "dtype": "string",
+          "_type": "Value"
+        },
+        "role": {
+          "dtype": "string",
+          "_type": "Value"
+        }
+      },
+      "_type": "List"
+    }
+  },
+  "homepage": "",
+  "license": ""
+}

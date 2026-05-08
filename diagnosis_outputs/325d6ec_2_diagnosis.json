@@ -1,0 +1,8 @@
+{
+  "task_id": "325d6ec_2",
+  "source_path": "experiments/outputs/counterfactual/google/gemma-4-26b-a4b-it/counterfactual_20260429_123153_chunk_004/run_10/tasks/325d6ec_2/counterfactual/analysis_root/325d6ec_2_B_root.json",
+  "raw_response": null,
+  "parsed_response": null,
+  "is_valid": false,
+  "error": "Error code: 400 - {'error': {'message': \"This model's maximum context length is 131072 tokens. However, you requested 131072 output tokens and your prompt contains 286310 characters (more than 0 characters, which is the upper bound for 0 input tokens). Please reduce the length of the input prompt or the number of requested output tokens. (parameter=input_text, value=286310)\", 'type': 'BadRequestError', 'param': 'input_text', 'code': 400}}"
+}

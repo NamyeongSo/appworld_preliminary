@@ -1,0 +1,71 @@
+{
+    "config": {
+        "agent": {
+            "appworld_config": {
+                "raise_on_extra_parameters": true,
+                "random_seed": 100
+            },
+            "ignore_multiple_calls": true,
+            "log_lm_calls": true,
+            "logger_config": {
+                "color": true,
+                "verbose": true
+            },
+            "max_output_length": null,
+            "max_prompt_length": null,
+            "max_steps": 50,
+            "model_config": {
+                "api_key_env_name": "NO_API_KEY",
+                "api_type": "chat_completions",
+                "base_url": "{MODEL_SERVER_URL}/v1",
+                "client_name": "openai",
+                "cost_per_token": {
+                    "input_cache_hit": 0,
+                    "input_cache_miss": 0,
+                    "input_cache_write": 0,
+                    "output": 0
+                },
+                "drop_reasoning_content": false,
+                "max_completion_tokens": 3000,
+                "max_retries": 100,
+                "name": "Qwen/Qwen3-8B",
+                "retry_after_n_seconds": 15,
+                "seed": 100,
+                "temperature": 0,
+                "use_cache": false
+            },
+            "prompt_file_path": "/home/thskadud/appworld/experiments/prompts/react_code_agent/instructions.txt",
+            "skip_if_finished": true,
+            "type": "simplified_react_code_agent",
+            "usage_tracker_config": {
+                "max_cost_overall": 1000,
+                "max_cost_per_task": 10,
+                "max_output_tokens_per_task": 100000
+            }
+        },
+        "dataset": "test_normal",
+        "model_server": {
+            "command": "vllm serve Qwen/Qwen3-8B --reasoning-parser deepseek_r1 --max-num-seqs 5 --max-model-len 4096 --enable-auto-tool-choice --tool-call-parser hermes --port {port}",
+            "enabled": true,
+            "health_check_at": "/v1/models",
+            "port": 8000,
+            "show_logs": false,
+            "started": true,
+            "timeout": 600
+        }
+    },
+    "metadata": {
+        "agent": {
+            "file_name": "simplified_react_code_agent",
+            "humanized_name": "ReAct Code Agent"
+        },
+        "model": {
+            "creator": "alibaba",
+            "file_name": "qwen3-8b-with-reasoning",
+            "humanized_name": "Qwen3 8B With Reasoning",
+            "precise_name": "Qwen/Qwen3-8B",
+            "provider": "vllm"
+        }
+    },
+    "type": "simplified"
+}

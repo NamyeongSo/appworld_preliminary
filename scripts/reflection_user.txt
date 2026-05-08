@@ -1,0 +1,90 @@
+User Prompt for the Reflection Agent
+You are given a folder that contains multiple LLM agent trajectory traces for
+    solving the same task.
+They are a mix of successful and failed executions in general, indicated by
+    reward/success metrics in the traces, but it's also possible that all traces are
+    successful or failed.
+Please analyze multiple LLM agent trajectories and generate a guidance using
+    contrastive learning.
+
+## Trajectory Folder
+Path: {{ traces_folder }}
+
+This folder contains multiple trajectory JSON files - a mix of successful and failed
+    agent executions. You can work outside this folder.
+
+## CRITICAL: Instructions (Follow in Order)
+
+**Step 1: CHECK FILE SIZES FIRST (MANDATORY)**
+Before reading ANY trajectory content, run:
+```bash
+ls -lh {{ traces_folder }}/*.json 2>/dev/null || ls -lh {{ traces_folder }}
+find {{ traces_folder }} -name "*.json" -exec ls -lh {} \; | head -20
+```
+This prevents context window overflow errors.
+
+**Step 2: IDENTIFY SUCCESS VS FAILURE (CONTRASTIVE SETUP)**
+Extract reward/success metrics from all files to categorize them:
+```bash
+# Get reward values from all trajectory files
+for f in {{ traces_folder }}/*.json; do
+    echo -n "$f: "
+    grep -oE '"reward":\s*[0-9.-]+' "$f" | head -1
+done 2>/dev/null | head -30
+
+# Or use jq if files are small
+find {{ traces_folder }} -name "*.json" -size -100k -exec sh -c 'echo -n "{}: " &&
+    jq -r ".data.reward // .reward // \"N/A\"" "{}"' \; 2>/dev/null | head -30
+```
+
+Categorize traces into:
+- **Successful traces**: High reward (e.g., reward > 0.5 or success=true)
+- **Failed traces**: Low reward (e.g., reward <= 0 or success=false)
+
+**Step 3: ANALYZE SUCCESSFUL TRACES**
+For successful traces, identify:
+- What actions/strategies led to success
+- How the agent handled challenges
+- Decision-making patterns
+- Skip this step if there is no successful trace
+
+```bash
+# Example: Analyze a successful trace (adjust filename)
+grep -oE '"tool_name":\s*"[ˆ"]*"' <successful_trace.json> | sort | uniq -c | sort -rn
+grep -E -B2 -A2 "success|complete|done" <successful_trace.json> | head -50
+```
+
+**Step 4: ANALYZE FAILED TRACES**
+For failed traces, identify:
+- What went wrong (errors, loops, wrong decisions)
+- Where the agent got stuck
+- Common failure patterns
+- Skip this step if there is no failed traces
+
+```bash
+# Example: Analyze a failed trace (adjust filename)
+grep -E "error|Error|failed|Failed|exception" <failed_trace.json> | head -30
+grep -oE '"content":\s*"[ˆ"]{0,100}' <failed_trace.json> | sort | uniq -c | sort -rn
+    | head -20
+```
+
+**Step 5: CONTRASTIVE COMPARISON**
+Compare successful vs failed traces to identify:
+1. **Differentiating behaviors**: What do successful agents do that failed ones
+    don't?
+2. **Common pitfalls**: What mistakes do failed agents make?
+3. **Recovery strategies**: How do successful agents recover from errors?
+4. **Decision quality**: How do successful agents make better choices?
+
+**Step 6: GENERATE TASK-SPECIFIC GUIDANCE**
+Based on your contrastive analysis, generate a step-by-step guidance for this task.
+    The goal is to add this guidance at the beginning of the task, so that the agent
+    can always successfully complete the task. Be concise.
+
+## Output Requirements
+
+After your analysis, output the task-specific guidance in the following format:
+
+<guidance>
+The strategy for completing this task is ...
+</guidance>

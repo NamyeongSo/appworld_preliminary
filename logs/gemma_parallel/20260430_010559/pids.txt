@@ -1,0 +1,5 @@
+1000487 simplified_react_code_agent/google/gemma-4-26b-a4b-it/parallel_20260430_010559/run_01 logs/gemma_parallel/20260430_010559/run_01.log
+1000495 simplified_react_code_agent/google/gemma-4-26b-a4b-it/parallel_20260430_010559/run_02 logs/gemma_parallel/20260430_010559/run_02.log
+1000505 simplified_react_code_agent/google/gemma-4-26b-a4b-it/parallel_20260430_010559/run_03 logs/gemma_parallel/20260430_010559/run_03.log
+1000515 simplified_react_code_agent/google/gemma-4-26b-a4b-it/parallel_20260430_010559/run_04 logs/gemma_parallel/20260430_010559/run_04.log
+1000525 simplified_react_code_agent/google/gemma-4-26b-a4b-it/parallel_20260430_010559/run_05 logs/gemma_parallel/20260430_010559/run_05.log
