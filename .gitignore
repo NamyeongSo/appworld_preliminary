@@ -139,7 +139,9 @@ src/appworld/.source/*.bundle
 generate/.source/*.bundle
 
 # Hypothesis 1 generated runtime artifacts; keep source code, manifests, prompts, tests, and reports tracked.
-hypothesis_1/appworld_root/
+# Track appworld_root/data as a symlink to the repository data directory, but not generated runtime outputs.
+hypothesis_1/appworld_root/*
+!hypothesis_1/appworld_root/data
 hypothesis_1/outputs/
 !hypothesis_1/data/
 !hypothesis_1/data/**
